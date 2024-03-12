@@ -13,9 +13,9 @@ use ai::{Player, Enemy};
 
 fn main() {
     FFGame::run(WindowSettings {
-        title: String::from("player"),
+        title: String::from("Logan Cammish Game"),
         size: (900, 800),
-        resizable: true,
+        resizable: false,
         maximized: false,
         fullscreen: false,
     }).unwrap();
@@ -32,6 +32,7 @@ struct Position(f32, f32);
 
 struct FFGame {
     player: Player,
+    enemy: Enemy,
     score: u16,
     xp: u32,
     ticks: u64,
@@ -49,8 +50,11 @@ impl Game for FFGame {
     fn load(_window: &Window) -> Task<FFGame> {
         let mut player = Player::new();
         player.create_player();
+        let mut enemy = Enemy::new(); 
+        enemy.create_enemy();
         Task::succeed(|| FFGame {
            player,
+           enemy,
            score: 0, 
            xp: 0,
            ticks: 1,
@@ -66,7 +70,7 @@ impl Game for FFGame {
     fn interact(&mut self, input: &mut CustomInput, _window: &mut Window) {
         if input.keys_pressed.len() != 0 {
             self.lkey = ai::input(input.keys_pressed[0]);
-        } else if input.keys_released.len() == 1 { 
+        } else if input.keys_released.len() == 2 { 
             self.lkey = None;
         }
     }
@@ -74,14 +78,18 @@ impl Game for FFGame {
         if timer.has_ticked() && !self.player.died() {    
             self.ticks += 1; 
             self.player.move_to(self.lkey);
-            self.player.position = Vec::from([*self.player.position.last().unwrap()]);        
+            self.player.position = Vec::from([*self.player.position.last().unwrap()]);    
+
+            self.enemy.move_to(self.lkey);
+            self.enemy.position = Vec::from([*self.enemy.position.last().unwrap()]);    
 
             frame.clear(Color{
                 r: 0.0,
                 g: 0.0,
                 b: 0.0,
                 a: 0.0
-            });              
+            });             
+            self.enemy.draw_enemy(frame);
             self.player.draw_player(frame);
 
             if self.ticks >= 20 { 
