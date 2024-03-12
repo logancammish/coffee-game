@@ -7,4 +7,3 @@ edition = "2021"
 
 [dependencies]
 coffee = { version = "0.4.1", features = ["opengl"] }
-rand = "x"
