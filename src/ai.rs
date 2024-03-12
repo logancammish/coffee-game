@@ -46,7 +46,8 @@ impl Player {
     
     pub fn move_right(&mut self) {
         let player = self.position.last().unwrap().clone();
-        if player.0 != 870.0 {
+        println!("{}", player.0);
+        if player.0 <= 880.0 {
             self.position.push(Position(player.0 + 7.0, player.1));
         } else {
             self.position.push(Position(0.0, player.1));
@@ -55,7 +56,7 @@ impl Player {
 
     pub fn move_left(&mut self) {
         let player = self.position.last().unwrap().clone();
-        if player.0 != 0.0 {
+        if player.0 >= 0.0 {
             self.position.push(Position(player.0 - 7.0, player.1));
         } else {
             self.position.push(Position(870.0, player.1));
@@ -64,7 +65,7 @@ impl Player {
 
     pub fn move_down(&mut self) {        
         let player = self.position.last().unwrap().clone();
-        if player.1 != 570.0 {
+        if player.1 <= 800.0 {
             self.position.push(Position(player.0, player.1 + 10.0));
         } else {
             self.position.push(Position(player.0, 0.0));
@@ -135,7 +136,7 @@ impl Enemy {
     }
 
     pub fn create_enemy(&mut self) {
-        self.position.push(Position(20.0, 45.0));
+        self.position.push(Position(150.0, 45.0));
     }
 
     pub fn draw_enemy(&mut self, frame: &mut Frame) {
@@ -162,7 +163,7 @@ impl Enemy {
     pub fn move_right(&mut self) {
         let head = self.position.last().unwrap().clone();
         if head.0 != 870.0 {
-            self.position.push(Position(head.0 + 7.0, head.1));
+            self.position.push(Position(head.0 + 10.0, head.1));
         } else {
             self.position.push(Position(0.0, head.1));
         }
@@ -171,7 +172,7 @@ impl Enemy {
     pub fn move_left(&mut self) {
         let enemy = self.position.last().unwrap().clone();
         if enemy.0 != 0.0 {
-            self.position.push(Position(enemy.0 - 7.0, enemy.1));
+            self.position.push(Position(enemy.0 - 10.0, enemy.1));
         } else {
             self.position.push(Position(870.0, enemy.1));
         }
@@ -179,8 +180,8 @@ impl Enemy {
 
     pub fn move_down(&mut self) {        
         let enemy = self.position.last().unwrap().clone();
-        if enemy.1 != 570.0 {
-            self.position.push(Position(enemy.0, enemy.1 + 10.0));
+        if enemy.1 <= 800.0 {
+            self.position.push(Position(enemy.0, enemy.1 + 15.0));
         } else {
             self.position.push(Position(enemy.0, 0.0));
         }
@@ -189,7 +190,7 @@ impl Enemy {
     pub fn move_up(&mut self) {
         let enemy = self.position.last().unwrap().clone();
         if enemy.1 != 0.0 {
-            self.position.push(Position(enemy.0, enemy.1 - 10.0));
+            self.position.push(Position(enemy.0, enemy.1 - 15.0));
         } else {        
             self.position.push(Position(enemy.0, 570.0));
         }
@@ -210,13 +211,13 @@ impl Enemy {
             Some(KeyCode::Up) => {
                 self.move_up();
             }
-            Some(KeyCode::Right) => {
+            Some(KeyCode::Left) => {
                 self.move_left();
             }
             Some(KeyCode::Down) => {
                 self.move_down();
             }
-            Some(KeyCode::Left) => {
+            Some(KeyCode::Right) => {
                 self.move_right();
             }
             _ => {
