@@ -147,10 +147,10 @@ impl Enemy {
                 Shape::Rectangle(Rectangle {
                     x: pos.0,
                     y: pos.1,
-                    width: 30.0,
-                    height: 30.0,
+                    width: 10.0,
+                    height: 10.0,
                 }),
-                Color::GREEN,
+                Color::RED,
             );
             if index >= 2  {
                 break
@@ -207,16 +207,16 @@ impl Enemy {
     pub fn move_to(&mut self, keycode: Option<KeyCode>) {
         self.direction = keycode;
         match keycode {
-            Some(KeyCode::W) => {
+            Some(KeyCode::Up) => {
                 self.move_up();
             }
-            Some(KeyCode::A) => {
+            Some(KeyCode::Right) => {
                 self.move_left();
             }
-            Some(KeyCode::S) => {
+            Some(KeyCode::Down) => {
                 self.move_down();
             }
-            Some(KeyCode::D) => {
+            Some(KeyCode::Left) => {
                 self.move_right();
             }
             _ => {
@@ -232,5 +232,37 @@ impl Enemy {
             }
         }
         false
+    }
+}
+
+pub fn input(key: KeyCode) -> Option<KeyCode> {
+    match key {
+        KeyCode::W => {
+            return Some(key);
+        }
+        KeyCode::A => {
+            return Some(key);
+        }
+        KeyCode::S => {
+            return Some(key);
+        }
+        KeyCode::D => {
+            return Some(key);
+        }
+        KeyCode::Up => {
+            return Some(key);
+        }
+        KeyCode::Left => {
+            return Some(key);
+        }
+        KeyCode::Down => {
+            return Some(key);
+        }
+        KeyCode::Right => {
+            return Some(key);
+        }
+        _ => { 
+            return None; 
+        },
     }
 }
