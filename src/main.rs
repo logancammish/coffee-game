@@ -65,24 +65,7 @@ impl Game for FFGame {
 
     fn interact(&mut self, input: &mut CustomInput, _window: &mut Window) {
         if input.keys_pressed.len() != 0 {
-            let key = input.keys_pressed[0];
-            match key {
-                KeyCode::W => {
-                    self.lkey = Some(key);
-                }
-                KeyCode::A => {
-                    self.lkey = Some(key);
-                }
-                KeyCode::S => {
-                    self.lkey = Some(key);
-                }
-                KeyCode::D => {
-                    self.lkey = Some(key);
-                }
-                _ => { 
-                    self.lkey = None; 
-                },
-            }
+            self.lkey = ai::input(input.keys_pressed[0]);
         } else if input.keys_released.len() == 1 { 
             self.lkey = None;
         }
