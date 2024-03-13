@@ -8,4 +8,3 @@ edition = "2021"
 [dependencies]
 coffee = { version = "0.4.1", features = ["vulkan"] }
 console = "0.15.8"
-text_io = "0.1.12"
