@@ -3,12 +3,16 @@
 
 Game made in Rust using the Coffee crate. 
 
+A player uses WASD to move around and must avoid hitting the other player, who uses the arrow keys. The player who uses the red keys is much faster but has lower health. The objective is to hit the other play while in control until they die.
+
+
 Webpage: https://logancammish.github.io/coffeegame 
 
 
 
 
 # Installation:    
+### <ins>Windows:</ins>
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
 ### <ins>Linux, MacOS, FreeBSD, Android and others:</ins>
