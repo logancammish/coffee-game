@@ -39,8 +39,8 @@ impl Player {
                 Shape::Rectangle(Rectangle {
                     x: pos.0,
                     y: pos.1,
-                    width: 50.0,
-                    height: 50.0,
+                    width: 40.0,
+                    height: 40.0,
                 }),
                 Color::GREEN,
             );
@@ -149,7 +149,7 @@ impl Enemy {
     }
 
     pub fn create_enemy(&mut self) {
-        self.position.push(Position(150.0, 45.0));
+        self.position.push(Position(560.0, 90.0));
     }
 
     pub fn draw_enemy(&mut self, frame: &mut Frame) {
@@ -161,8 +161,8 @@ impl Enemy {
                 Shape::Rectangle(Rectangle {
                     x: pos.0,
                     y: pos.1,
-                    width: 20.0,
-                    height: 20.0,
+                    width: 40.0,
+                    height: 40.0,
                 }),
                 Color::RED,
             );
