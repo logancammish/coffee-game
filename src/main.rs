@@ -74,15 +74,38 @@ impl Game for FFGame {
             self.lkey = None;
         }
     }
+
     fn draw(&mut self, frame: &mut Frame, timer: &Timer) {
         if timer.has_ticked() && !self.player.died() { 
+            if self.phealth <= 0 { 
+                self.ewins += 1; 
+                self.ehealth = 60; 
+                self.phealth = 100;
+                println!("Player lost ({}), Enemy won ({})", self.pwins, self.ewins);
+            } else if self.ehealth <= 0 { 
+                self.pwins += 1; 
+                self.ehealth = 60; 
+                self.phealth = 100;
+                println!("Enemy lost ({}), Player won ({})", self.ewins, self.pwins);
+            }
+
             // check to see if they are touching each other
             let player_position = self.player.position[0];
             let enemy_position = self.enemy.position[0];
             let xdiff = player_position.0 - enemy_position.0;
             let ydiff = player_position.1 - enemy_position.1;
-            if (xdiff <= 10.0) && (xdiff >= -10.0) &&
-                (ydiff <= 10.0) && (ydiff >= -10.0) { 
+            if (xdiff <= 40.0) && (xdiff >= -40.0) &&
+                (ydiff <= 40.0) && (ydiff >= -40.0) { 
+
+                    if self.player.is_moving() { 
+                        self.ehealth -= 20; 
+                        self.player.position.push(Position(20.0, 45.0));
+                        self.enemy.position.push(Position(560.0, 90.0));
+                    } else if self.enemy.is_moving() { 
+                        self.phealth -= 20;
+                        self.player.position.push(Position(20.0, 45.0));
+                        self.enemy.position.push(Position(560.0, 90.0));
+                    }
             } 
 
             self.ticks += 1; 
@@ -102,7 +125,7 @@ impl Game for FFGame {
             self.player.draw_player(frame);
 
             if self.ticks >= 20 { 
-                println!("{}th tick: {:?}", self.ticks, self.player.position);            
+                //println!("{}th tick: {:?}", self.ticks, self.player.position);            
 
                 self.ticks = 0;                
             }
