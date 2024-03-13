@@ -21,23 +21,20 @@ fn main() {
     }).unwrap();
 }
 
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 struct Position(f32, f32);
-
-
-
-
-
 
 struct FFGame {
     player: Player,
     enemy: Enemy,
-    score: u16,
-    xp: u32,
-    ticks: u64,
-    health: u8,
+
+    ticks: u64,    
     lkey: Option<KeyCode>,
+
+    phealth: u8,
+    ehealth: u8,
+    pwins: u64, 
+    ewins: u64, 
 }
 pub enum ButtonState {
     PlayAgain,
@@ -53,13 +50,16 @@ impl Game for FFGame {
         let mut enemy = Enemy::new(); 
         enemy.create_enemy();
         Task::succeed(|| FFGame {
-           player,
-           enemy,
-           score: 0, 
-           xp: 0,
-           ticks: 1,
-           health: 100, 
-           lkey: None,
+            player,
+            enemy,
+
+            ticks: 1,
+            lkey: None,
+
+            phealth: 100,
+            ehealth: 60, 
+            pwins: 0, 
+            ewins: 0
         })
     }
 
@@ -75,7 +75,16 @@ impl Game for FFGame {
         }
     }
     fn draw(&mut self, frame: &mut Frame, timer: &Timer) {
-        if timer.has_ticked() && !self.player.died() {    
+        if timer.has_ticked() && !self.player.died() { 
+            // check to see if they are touching each other
+            let player_position = self.player.position[0];
+            let enemy_position = self.enemy.position[0];
+            let xdiff = player_position.0 - enemy_position.0;
+            let ydiff = player_position.1 - enemy_position.1;
+            if (xdiff <= 10.0) && (xdiff >= -10.0) &&
+                (ydiff <= 10.0) && (ydiff >= -10.0) { 
+            } 
+
             self.ticks += 1; 
             self.player.move_to(self.lkey);
             self.player.position = Vec::from([*self.player.position.last().unwrap()]);    
@@ -93,7 +102,9 @@ impl Game for FFGame {
             self.player.draw_player(frame);
 
             if self.ticks >= 20 { 
-                println!("{}th tick: {:?}", self.ticks, self.player.position);
+                println!("{}th tick: {:?}", self.ticks, self.player.position);            
+                println!("{:?} : {:?} ", self.player.position, self.enemy.position);
+
                 self.ticks = 0;                
             }
         }
