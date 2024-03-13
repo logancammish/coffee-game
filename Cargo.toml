@@ -5,6 +5,10 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
+[target.'cfg(unix)'.dependencies]
 coffee = { version = "0.4.1", features = ["vulkan"] }
+console = "0.15.8"
+
+[target.'cfg(windows)'.dependencies]
+coffee = { version = "0.4.1", features = ["dx11"] }
 console = "0.15.8"
