@@ -16,8 +16,8 @@ Webpage: https://logancammish.github.io/coffeegame
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
 ### <ins>Others:</ins>
-1. Clone this github repository (with git: `git clone https://github.com/logancammish/cli-file-reader-remake.git`)
-2. Install Rust [here](https://www.rust-lang.org/tools/install)
+1. Install Rust [here](https://www.rust-lang.org/tools/install)
+2. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
 3. Open the repository location in a terminal, and run `cargo build --release`
 4. You will find your executable in `/target/release`
 
