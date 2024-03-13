@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 coffee = { version = "0.4.1", features = ["opengl"] }
 console = "0.15.8"
+colored = "2.1.0"
