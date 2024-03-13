@@ -45,6 +45,7 @@ impl Game for FFGame {
     type LoadingScreen = ();
 
     fn load(_window: &Window) -> Task<FFGame> {
+        println!("\n");
         let mut player = Player::new();
         player.create_player();
         let mut enemy = Enemy::new(); 
@@ -96,16 +97,14 @@ impl Game for FFGame {
             let ydiff = player_position.1 - enemy_position.1;
             if (xdiff <= 40.0) && (xdiff >= -40.0) &&
                 (ydiff <= 40.0) && (ydiff >= -40.0) { 
-
+                    print!("\r\rPlayer health: {} Enemy health: {}", self.phealth, self.ehealth);
                     if self.player.is_moving() { 
                         self.ehealth -= 20; 
-                        self.player.position.push(Position(20.0, 45.0));
-                        self.enemy.position.push(Position(560.0, 90.0));
                     } else if self.enemy.is_moving() { 
                         self.phealth -= 20;
-                        self.player.position.push(Position(20.0, 45.0));
-                        self.enemy.position.push(Position(560.0, 90.0));
                     }
+                    self.player.position.push(Position(20.0, 45.0));
+                    self.enemy.position.push(Position(560.0, 90.0));
             } 
 
             self.ticks += 1; 
