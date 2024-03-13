@@ -11,7 +11,7 @@ Webpage: https://logancammish.github.io/coffeegame
 
 
 
-# Installation:    
+# Installation
 ### <ins>Windows:</ins>
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
