@@ -20,9 +20,10 @@ Webpage: https://logancammish.github.io/coffeegame
 
 ### <ins>Others:</ins>
 1. Install Rust [here](https://www.rust-lang.org/tools/install) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-2. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
-3. Open the repository location in a terminal, and run `cargo build --release`
-4. You will find your executable in `/target/release`
+2. If you are trying to use this on Linux, you need the `libudev-dev` package (`apt install libudev-dev`, `dnf install libudev-dev`, etc)
+3. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
+4. Open the repository location in a terminal, and run `cargo build --release`
+5. You will find your executable in `/target/release`
 
 # Updating
 > Note: You can always roll back to an old release by downloading an older release
