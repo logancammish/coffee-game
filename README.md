@@ -1,7 +1,4 @@
 # coffee-game
-[![build-windows](https://github.com/logancammish/coffee-game/actions/workflows/windows.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/windows.yml)
-[![build-linux](https://github.com/logancammish/coffee-game/actions/workflows/linux.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/linux.yml)
-[![build-macos](https://github.com/logancammish/coffee-game/actions/workflows/macos.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/macos.yml)
 
 Game made in Rust using the Coffee crate. 
 
@@ -14,6 +11,10 @@ Webpage: https://logancammish.github.io/coffeegame
 
 
 # Installation
+Compatiblility: 
+[![build-windows](https://github.com/logancammish/coffee-game/actions/workflows/windows.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/windows.yml)
+[![build-linux](https://github.com/logancammish/coffee-game/actions/workflows/linux.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/linux.yml)
+[![build-macos](https://github.com/logancammish/coffee-game/actions/workflows/macos.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/macos.yml)
 ### <ins>Windows:</ins>
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
