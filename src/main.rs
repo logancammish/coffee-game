@@ -14,6 +14,7 @@ use terrain::generation;
 mod ai; 
 use ai::{Player, Enemy};
 use console::Term;
+use colored::Colorize;
 
 fn main() {
     FFGame::run(WindowSettings {
@@ -22,7 +23,7 @@ fn main() {
         resizable: false,
         maximized: false,
         fullscreen: false,
-    }).unwrap();
+    }).unwrap(); 
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -52,7 +53,8 @@ impl Game for FFGame {
         let mut player = Player::new();
         player.create_player();
         let mut enemy = Enemy::new(); 
-        enemy.create_enemy();
+        enemy.create_enemy();                
+        println!("{}", String::from("\nGame 1").blue());
         Task::succeed(|| FFGame {
             player,
             enemy,
@@ -88,12 +90,17 @@ impl Game for FFGame {
             let ydiff = player_position.1 - enemy_position.1;
             if (xdiff <= 40.0) && (xdiff >= -40.0) &&
                 (ydiff <= 40.0) && (ydiff >= -40.0) { 
-                    Term::stdout().clear_last_lines(5).unwrap();
-                    println!("\nPlayer health: {} Enemy health: {}", self.phealth, self.ehealth);
+                    Term::stdout().clear_last_lines(2).unwrap();
                     if self.player.is_moving() { 
                         self.ehealth -= 20; 
+                        self.phealth += 20;
+                        println!("\nPlayer health: {} Enemy health: {}",
+                         self.phealth.to_string().green(), self.ehealth.to_string().red());
                     } else if self.enemy.is_moving() { 
                         self.phealth -= 20;
+                        self.ehealth += 20;
+                        println!("\nPlayer health: {} Enemy health: {}",
+                         self.phealth.to_string().red(), self.ehealth.to_string().green());
                     }
                     self.player.position.push(Position(20.0, 45.0));
                     self.enemy.position.push(Position(560.0, 90.0));
@@ -115,9 +122,9 @@ impl Game for FFGame {
             self.enemy.draw_enemy(frame);
             self.player.draw_player(frame);
 
-            if self.ticks >= 20 { 
-                //println!("{}th tick: {:?}", self.ticks, self.player.position);            
-
+            if self.ticks >= 120 {                     
+                Term::stdout().clear_last_lines(2).unwrap();
+                println!("\nPlayer health: {} Enemy health: {}", self.phealth, self.ehealth);
                 self.ticks = 0;                
             }
 
@@ -125,12 +132,14 @@ impl Game for FFGame {
                 self.ewins += 1; 
                 self.ehealth = 60; 
                 self.phealth = 100;
-                println!("\n\nPlayer lost ({}), Enemy won ({})\n", self.pwins, self.ewins);
+                println!("\n\n\n\nPlayer lost ({}), Enemy won ({})\n\n\n\n", self.pwins, self.ewins);
+                println!("{}", String::from(format!("\nGame {}\n\n", (self.pwins+self.ewins)+1)).blue());
             } else if self.ehealth <= 0 { 
                 self.pwins += 1; 
                 self.ehealth = 60; 
                 self.phealth = 100;
-                println!("\n\nEnemy lost ({}), Player won ({})\n", self.ewins, self.pwins);
+                println!("\n\n\n\nEnemy lost ({}), Player won ({})\n\n\n\n", self.ewins, self.pwins);
+                println!("{}", String::from(format!("\nGame {}\n\n", (self.pwins+self.ewins)+1)).blue());
             }
         }
     }
