@@ -14,7 +14,6 @@ use terrain::generation;
 mod ai; 
 use ai::{Player, Enemy};
 use console::Term;
-use text_io::read;
 
 fn main() {
     FFGame::run(WindowSettings {
