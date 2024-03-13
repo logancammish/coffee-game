@@ -103,7 +103,6 @@ impl Game for FFGame {
 
             if self.ticks >= 20 { 
                 println!("{}th tick: {:?}", self.ticks, self.player.position);            
-                println!("{:?} : {:?} ", self.player.position, self.enemy.position);
 
                 self.ticks = 0;                
             }
