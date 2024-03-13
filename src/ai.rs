@@ -19,6 +19,13 @@ impl Player {
         }
     }
 
+    pub fn is_moving(&mut self) -> bool { 
+        (self.direction == Some(KeyCode::W)) || 
+        (self.direction == Some(KeyCode::A)) || 
+        (self.direction == Some(KeyCode::S)) || 
+        (self.direction == Some(KeyCode::D))
+    }
+
     pub fn create_player(&mut self) {
         self.position.push(Position(20.0, 45.0));
     }
@@ -46,7 +53,6 @@ impl Player {
     
     pub fn move_right(&mut self) {
         let player = self.position.last().unwrap().clone();
-        println!("{}", player.0);
         if player.0 <= 880.0 {
             self.position.push(Position(player.0 + 7.0, player.1));
         } else {
@@ -135,6 +141,13 @@ impl Enemy {
         }
     }
 
+    pub fn is_moving(&mut self) -> bool { 
+        (self.direction == Some(KeyCode::Up)) || 
+        (self.direction == Some(KeyCode::Left)) || 
+        (self.direction == Some(KeyCode::Down)) || 
+        (self.direction == Some(KeyCode::Right))
+    }
+
     pub fn create_enemy(&mut self) {
         self.position.push(Position(150.0, 45.0));
     }
@@ -148,8 +161,8 @@ impl Enemy {
                 Shape::Rectangle(Rectangle {
                     x: pos.0,
                     y: pos.1,
-                    width: 10.0,
-                    height: 10.0,
+                    width: 20.0,
+                    height: 20.0,
                 }),
                 Color::RED,
             );
