@@ -1,6 +1,9 @@
 extern crate coffee;
+use std::thread;
+use std::time::Duration;
+
 use coffee::graphics::{
-    Color, Frame, Window, WindowSettings
+    Color, Font, Frame, Point, Text, Window, WindowSettings
 };
 use coffee::input::keyboard::KeyCode;
 use coffee::input::{self, keyboard, Input};
@@ -10,6 +13,8 @@ mod terrain;
 use terrain::generation;
 mod ai; 
 use ai::{Player, Enemy};
+use console::Term;
+use text_io::read;
 
 fn main() {
     FFGame::run(WindowSettings {
@@ -45,7 +50,6 @@ impl Game for FFGame {
     type LoadingScreen = ();
 
     fn load(_window: &Window) -> Task<FFGame> {
-        println!("\n");
         let mut player = Player::new();
         player.create_player();
         let mut enemy = Enemy::new(); 
@@ -76,20 +80,8 @@ impl Game for FFGame {
         }
     }
 
-    fn draw(&mut self, frame: &mut Frame, timer: &Timer) {
-        if timer.has_ticked() && !self.player.died() { 
-            if self.phealth <= 0 { 
-                self.ewins += 1; 
-                self.ehealth = 60; 
-                self.phealth = 100;
-                println!("\n\nPlayer lost ({}), Enemy won ({})\n", self.pwins, self.ewins);
-            } else if self.ehealth <= 0 { 
-                self.pwins += 1; 
-                self.ehealth = 60; 
-                self.phealth = 100;
-                println!("\n\nEnemy lost ({}), Player won ({})\n", self.ewins, self.pwins);
-            }
-
+    fn draw(&mut self, frame: &mut Frame, timer: &Timer) {    
+        if timer.has_ticked() { 
             // check to see if they are touching each other
             let player_position = self.player.position[0];
             let enemy_position = self.enemy.position[0];
@@ -97,7 +89,8 @@ impl Game for FFGame {
             let ydiff = player_position.1 - enemy_position.1;
             if (xdiff <= 40.0) && (xdiff >= -40.0) &&
                 (ydiff <= 40.0) && (ydiff >= -40.0) { 
-                    print!("\r\rPlayer health: {} Enemy health: {}", self.phealth, self.ehealth);
+                    Term::stdout().clear_last_lines(5).unwrap();
+                    println!("\nPlayer health: {} Enemy health: {}", self.phealth, self.ehealth);
                     if self.player.is_moving() { 
                         self.ehealth -= 20; 
                     } else if self.enemy.is_moving() { 
@@ -127,6 +120,18 @@ impl Game for FFGame {
                 //println!("{}th tick: {:?}", self.ticks, self.player.position);            
 
                 self.ticks = 0;                
+            }
+
+            if self.phealth <= 0 {  
+                self.ewins += 1; 
+                self.ehealth = 60; 
+                self.phealth = 100;
+                println!("\n\nPlayer lost ({}), Enemy won ({})\n", self.pwins, self.ewins);
+            } else if self.ehealth <= 0 { 
+                self.pwins += 1; 
+                self.ehealth = 60; 
+                self.phealth = 100;
+                println!("\n\nEnemy lost ({}), Player won ({})\n", self.ewins, self.pwins);
             }
         }
     }
