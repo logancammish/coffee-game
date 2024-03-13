@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install dependencies 
-      run: cargo add libudev@0.1.4
+      run: cargo add libudev
     - name: Build
       run: cargo build --verbose
     - name: Run tests
