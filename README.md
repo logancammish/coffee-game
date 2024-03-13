@@ -1,5 +1,6 @@
 # coffee-game
 [![build](https://github.com/logancammish/coffee-game/actions/workflows/rust.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/rust.yml)
+[![build](https://github.com/logancammish/coffee-game/actions/workflows/rust.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/rust.yml)
 
 Game made in Rust using the Coffee crate. 
 
