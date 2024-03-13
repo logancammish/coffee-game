@@ -82,12 +82,12 @@ impl Game for FFGame {
                 self.ewins += 1; 
                 self.ehealth = 60; 
                 self.phealth = 100;
-                println!("Player lost ({}), Enemy won ({})", self.pwins, self.ewins);
+                println!("\n\nPlayer lost ({}), Enemy won ({})\n", self.pwins, self.ewins);
             } else if self.ehealth <= 0 { 
                 self.pwins += 1; 
                 self.ehealth = 60; 
                 self.phealth = 100;
-                println!("Enemy lost ({}), Player won ({})", self.ewins, self.pwins);
+                println!("\n\nEnemy lost ({}), Player won ({})\n", self.ewins, self.pwins);
             }
 
             // check to see if they are touching each other
