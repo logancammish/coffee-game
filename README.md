@@ -15,6 +15,8 @@ Webpage: https://logancammish.github.io/coffeegame
 [![build-macos](https://github.com/logancammish/coffee-game/actions/workflows/macos.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/macos.yml)
 [![build-linux](https://github.com/logancammish/coffee-game/actions/workflows/linux.yml/badge.svg)](https://github.com/logancammish/coffee-game/actions/workflows/linux.yml)
 
+Please note: due to the outdated nature of `coffee`, it uses an outdated version of `winit` which is not functional on Wayland.
+
 ### <ins>Windows:</ins>
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
