@@ -34,7 +34,7 @@ rm coffee-game
 The following will create the binary in the /usr/bin directory (untested, paste into terminal):
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sudo dnf install systemd-devel -y
+sudo dnf install systemd-devel kernel-devel make automake gcc gcc-c++ -y
 git clone https://github.com/logancammish/coffee-game.git
 cd coffee-game
 cargo build --release
