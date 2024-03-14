@@ -26,6 +26,7 @@ sudo apt install libudev-dev -y
 git clone https://github.com/logancammish/coffee-game.git
 cd coffee-game
 cargo build --release
+sudo chmod +x ./target/release/game
 sudo cp ./target/release/game /usr/bin
 cd ..
 rm coffee-game
@@ -38,6 +39,7 @@ sudo dnf install systemd-devel kernel-devel make automake gcc gcc-c++ -y
 git clone https://github.com/logancammish/coffee-game.git
 cd coffee-game
 cargo build --release
+sudo chmod +x ./target/release/game
 sudo cp ./target/release/game /usr/bin
 cd ..
 rm coffee-game
