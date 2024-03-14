@@ -54,7 +54,7 @@ impl Game for FFGame {
         player.create_player();
         let mut enemy = Enemy::new(); 
         enemy.create_enemy();                
-        println!("{}", String::from("\nGame 1").blue());
+        println!("{}", String::from("\nGame 1\n").blue());
         Task::succeed(|| FFGame {
             player,
             enemy,
