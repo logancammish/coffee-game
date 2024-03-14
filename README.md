@@ -30,9 +30,21 @@ sudo cp ./target/release/game /usr/bin
 cd ..
 rm coffee-game
 ```
+### <ins>Fedora Linux:</ins>
+The following will create the binary in the /usr/bin directory (untested, paste into terminal):
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo dnf install systemd-devel -y
+git clone https://github.com/logancammish/coffee-game.git
+cd coffee-game
+cargo build --release
+sudo cp ./target/release/game /usr/bin
+cd ..
+rm coffee-game
+```
 ### <ins>Others:</ins>
 1. Install Rust [here](https://www.rust-lang.org/tools/install) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` on Unix-based systems (MacOS, Linux...)
-2. If you are trying to use this on Linux, you need the `libudev-dev` package 
+2. If you are trying to use this on Linux, you need the `libudev` package 
 3. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
 4. Open the repository location in a terminal, and run `cargo build --release`
 5. You will find your executable in `/target/release`
