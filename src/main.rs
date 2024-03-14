@@ -18,9 +18,9 @@ use colored::Colorize;
 
 fn main() {
     FFGame::run(WindowSettings {
-        title: String::from("Logan Cammish Game"),
+        title: String::from("Coffee Game (c) Logan Cammish"),
         size: (900, 800),
-        resizable: false,
+        resizable: true,
         maximized: false,
         fullscreen: false,
     }).unwrap(); 
@@ -107,10 +107,10 @@ impl Game for FFGame {
             } 
 
             self.ticks += 1; 
-            self.player.move_to(self.lkey);
+            self.player.move_to(self.lkey, frame.width(), frame.height());
             self.player.position = Vec::from([*self.player.position.last().unwrap()]);    
 
-            self.enemy.move_to(self.lkey);
+            self.enemy.move_to(self.lkey, frame.width(), frame.height());
             self.enemy.position = Vec::from([*self.enemy.position.last().unwrap()]);    
 
             frame.clear(Color{
