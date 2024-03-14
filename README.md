@@ -19,7 +19,7 @@ Webpage: https://logancammish.github.io/coffeegame
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
 ### <ins>Linux:</ins>
-Please note: due to the outdated nature of `coffee`, it uses an outdated version of `winit` which is not functional on Wayland.
+> Note: due to the outdated nature of `coffee`, it uses an outdated version of `winit` which is not functional on Wayland.
 
 The following script will create the binary in the /usr/bin directory (ensure you have followed step 1 [here](https://github.com/logancammish/coffee-game#others) first):
 ```
