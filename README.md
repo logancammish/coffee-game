@@ -19,7 +19,7 @@ Webpage: https://logancammish.github.io/coffeegame
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
 ### <ins>Ubuntu Linux:</ins>
-The following will create the binary in the /usr/bin directory (untested, paste into terminal):
+The following will create the binary in the /usr/bin directory (paste into terminal):
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 sudo apt install libudev-dev -y
@@ -31,7 +31,7 @@ cd ..
 rm coffee-game
 ```
 ### <ins>Fedora Linux:</ins>
-The following will create the binary in the /usr/bin directory (untested, paste into terminal):
+The following will create the binary in the /usr/bin directory (paste into terminal):
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 sudo dnf install systemd-devel kernel-devel make automake gcc gcc-c++ -y
@@ -43,11 +43,10 @@ cd ..
 rm coffee-game
 ```
 ### <ins>Others:</ins>
-1. Install Rust [here](https://www.rust-lang.org/tools/install) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` on Unix-based systems (MacOS, Linux...)
-2. If you are trying to use this on Linux, you need the `libudev` package 
-3. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
-4. Open the repository location in a terminal, and run `cargo build --release`
-5. You will find your executable in `/target/release`
+1. Install Rust [here](https://www.rust-lang.org/tools/install) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` on Unix-based systems (MacOS, Linux...). If you are trying to use this on Linux, you need the `libudev` (Ubuntu) equivalent package as well
+2. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
+3. Open the repository location in a terminal, and run `cargo build --release`
+4. You will find your executable in `/target/release`
 
 # Updating
 > Note: You can always roll back to an old release by downloading an older release
