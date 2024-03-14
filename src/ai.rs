@@ -51,39 +51,40 @@ impl Player {
         mesh.draw(&mut frame.as_target());
     }
     
-    pub fn move_right(&mut self) {
-        let player = self.position.last().unwrap().clone();
-        if player.0 <= 880.0 {
-            self.position.push(Position(player.0 + 7.0, player.1));
+    
+    pub fn move_right(&mut self, width: f32) {
+        let head = self.position.last().unwrap().clone();
+        if head.0 != width {
+            self.position.push(Position(head.0 + 7.5, head.1));
         } else {
-            self.position.push(Position(0.0, player.1));
+            self.position.push(Position(0.0, head.1));
         }
     }
 
-    pub fn move_left(&mut self) {
-        let player = self.position.last().unwrap().clone();
-        if player.0 >= 0.0 {
-            self.position.push(Position(player.0 - 7.0, player.1));
+    pub fn move_left(&mut self, width: f32) {
+        let enemy = self.position.last().unwrap().clone();
+        if enemy.0 >= 0.0 {
+            self.position.push(Position(enemy.0 - 7.5, enemy.1));
         } else {
-            self.position.push(Position(870.0, player.1));
+            self.position.push(Position(width, enemy.1));
         }
     }
 
-    pub fn move_down(&mut self) {        
-        let player = self.position.last().unwrap().clone();
-        if player.1 <= 800.0 {
-            self.position.push(Position(player.0, player.1 + 10.0));
+    pub fn move_down(&mut self, height: f32) {        
+        let enemy = self.position.last().unwrap().clone();
+        if enemy.1 <= height {
+            self.position.push(Position(enemy.0, enemy.1 + 10.0));
         } else {
-            self.position.push(Position(player.0, 0.0));
+            self.position.push(Position(enemy.0, 0.0));
         }
     }
 
-    pub fn move_up(&mut self) {
-        let player = self.position.last().unwrap().clone();
-        if player.1 >= 0.0 {
-            self.position.push(Position(player.0, player.1 - 10.0));
+    pub fn move_up(&mut self, height: f32) {
+        let enemy = self.position.last().unwrap().clone();
+        if enemy.1 >= 0.0 {
+            self.position.push(Position(enemy.0, enemy.1 - 10.0));
         } else {        
-            self.position.push(Position(player.0, 800.0));
+            self.position.push(Position(enemy.0, height));
         }
     }
 
@@ -96,20 +97,20 @@ impl Player {
         }
     }
 
-    pub fn move_to(&mut self, keycode: Option<KeyCode>) {
+    pub fn move_to(&mut self, keycode: Option<KeyCode>, width: f32, height: f32) {
         self.direction = keycode;
         match keycode {
             Some(KeyCode::W) => {
-                self.move_up();
+                self.move_up(height);
             }
             Some(KeyCode::A) => {
-                self.move_left();
+                self.move_left(width);
             }
             Some(KeyCode::S) => {
-                self.move_down();
+                self.move_down(height);
             }
             Some(KeyCode::D) => {
-                self.move_right();
+                self.move_right(width);
             }
             _ => {
                 self.stop();
@@ -173,39 +174,39 @@ impl Enemy {
         mesh.draw(&mut frame.as_target());
     }
     
-    pub fn move_right(&mut self) {
+    pub fn move_right(&mut self, width: f32) {
         let head = self.position.last().unwrap().clone();
-        if head.0 != 870.0 {
+        if head.0 != width {
             self.position.push(Position(head.0 + 10.0, head.1));
         } else {
             self.position.push(Position(0.0, head.1));
         }
     }
 
-    pub fn move_left(&mut self) {
+    pub fn move_left(&mut self, width: f32) {
         let enemy = self.position.last().unwrap().clone();
         if enemy.0 >= 0.0 {
             self.position.push(Position(enemy.0 - 10.0, enemy.1));
         } else {
-            self.position.push(Position(870.0, enemy.1));
+            self.position.push(Position(width, enemy.1));
         }
     }
 
-    pub fn move_down(&mut self) {        
+    pub fn move_down(&mut self, height: f32) {        
         let enemy = self.position.last().unwrap().clone();
-        if enemy.1 <= 800.0 {
+        if enemy.1 <= height {
             self.position.push(Position(enemy.0, enemy.1 + 15.0));
         } else {
             self.position.push(Position(enemy.0, 0.0));
         }
     }
 
-    pub fn move_up(&mut self) {
+    pub fn move_up(&mut self, height: f32) {
         let enemy = self.position.last().unwrap().clone();
         if enemy.1 >= 0.0 {
             self.position.push(Position(enemy.0, enemy.1 - 15.0));
         } else {        
-            self.position.push(Position(enemy.0, 800.0));
+            self.position.push(Position(enemy.0, height));
         }
     }
 
@@ -218,20 +219,20 @@ impl Enemy {
         }
     }
 
-    pub fn move_to(&mut self, keycode: Option<KeyCode>) {
+    pub fn move_to(&mut self, keycode: Option<KeyCode>, width: f32, height: f32) {
         self.direction = keycode;
         match keycode {
             Some(KeyCode::Up) => {
-                self.move_up();
+                self.move_up(height);
             }
             Some(KeyCode::Left) => {
-                self.move_left();
+                self.move_left(width);
             }
             Some(KeyCode::Down) => {
-                self.move_down();
+                self.move_down(height);
             }
             Some(KeyCode::Right) => {
-                self.move_right();
+                self.move_right(width);
             }
             _ => {
                 self.stop();
