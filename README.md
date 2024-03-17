@@ -19,7 +19,7 @@ Webpage: https://logancammish.github.io/coffeegame
 1. Head over to [here](https://github.com/logancammish/coffee-game/releases/latest) and download your executable
 
 ### <ins>Linux:</ins>
-> Note: Linux support requires you have installed a large amount of package prerequsites (on Ubuntu most of these can be found in `build-essential` and `libudev-dev`, however, on Fedora for example, the list is far longer)
+> Note: Linux support requires you have installed a large amount of package prerequsites (on Ubuntu most of these can be found in `build-essential` and `libudev-dev`, however, on some distributions the list is longer)
 
 The following script will create the binary in the /usr/bin directory:
 ```
