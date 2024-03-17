@@ -34,7 +34,7 @@ rm coffee-game
 ```
 
 ### <ins>Others:</ins>
-1. Install Rust [here](https://www.rust-lang.org/tools/install) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` on Unix-based systems (MacOS, Linux...). If you are trying to use this on Linux, you need the `libudev` (Ubuntu) equivalent package as well
+1. Install Rust [here](https://www.rust-lang.org/tools/install) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` on Unix-based systems (MacOS, Linux...)
 2. Clone this github repository (with git: `git clone https://github.com/logancammish/coffee-game.git`)
 3. Open the repository location in a terminal, and run `cargo build --release`
 4. You will find your executable in `/target/release`
