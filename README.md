@@ -21,7 +21,8 @@ Webpage: https://logancammish.github.io/coffeegame
 ### <ins>Linux:</ins>
 > Note: Linux support requires you have installed a large amount of package prerequsites (on Ubuntu most of these can be found in `build-essential` and `libudev-dev`, however, on some distributions the list is longer)
 
-The following script will create the binary in the /usr/bin directory:
+1. Install Rust with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+2. The following script will create the binary in the /usr/bin directory:
 ```
 #!/bin/bash
 git clone https://github.com/logancammish/coffee-game.git
