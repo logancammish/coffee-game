@@ -45,7 +45,7 @@ pub enum ButtonState {
     PlayAgain,
 }
 impl Game for FFGame {
-    const TICKS_PER_SECOND: u16 = 60;
+    const TICKS_PER_SECOND: u16 = 120;
     type Input = CustomInput;
     type LoadingScreen = ();
 
