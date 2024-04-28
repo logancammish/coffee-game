@@ -51,13 +51,12 @@ impl Player {
         mesh.draw(&mut frame.as_target());
     }
     
-    
     pub fn move_right(&mut self, width: f32) {
-        let head = self.position.last().unwrap().clone();
-        if head.0 != width {
-            self.position.push(Position(head.0 + 7.5, head.1));
+        let enemy = self.position.last().unwrap().clone();
+        if enemy.0 <= width {
+            self.position.push(Position(enemy.0 + 7.5, enemy.1));
         } else {
-            self.position.push(Position(0.0, head.1));
+            self.position.push(Position(0.0, enemy.1));
         }
     }
 
