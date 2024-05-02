@@ -20,6 +20,7 @@ Webpage: https://logancammish.github.io/coffeegame
 
 ### <ins>Linux:</ins>
 > N.B: Linux support requires you have installed a large amount of package prerequsites (on Ubuntu most of these can be found in `build-essential` and `libudev-dev`, however, on some distributions the list is longer)
+
 > N.B: Linux is not supported due to an issue with Coffee when attempting to build for Wayland
 
 1. Install Rust with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
