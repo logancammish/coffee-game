@@ -10,8 +10,9 @@ pub struct Player {
     pub position: Vec<Position>,
     pub direction: Option<KeyCode>,
 }
-
+// Player struct, stores position and direction and related methods
 impl Player {
+    // Create a new player 
     pub fn new() -> Player {
         Player {
             position: vec![],
@@ -19,6 +20,7 @@ impl Player {
         }
     }
 
+    // Detect if it is moving
     pub fn is_moving(&mut self) -> bool { 
         (self.direction == Some(KeyCode::W)) || 
         (self.direction == Some(KeyCode::A)) || 
@@ -26,10 +28,12 @@ impl Player {
         (self.direction == Some(KeyCode::D))
     }
 
+    // Change player position to default
     pub fn create_player(&mut self) {
         self.position.push(Position(20.0, 45.0));
     }
 
+    // Draw the player sprite
     pub fn draw_player(&mut self, frame: &mut Frame) {
         let mut mesh = Mesh::new();
         let mut index = 0;
@@ -51,6 +55,7 @@ impl Player {
         mesh.draw(&mut frame.as_target());
     }
     
+    // Moving
     pub fn move_right(&mut self, width: f32) {
         let enemy = self.position.last().unwrap().clone();
         if enemy.0 <= width {
@@ -117,6 +122,7 @@ impl Player {
         }    
     }
 
+    // Return true if dead, return false if alive
     pub fn died(&self) -> bool {
         for i in &self.position[..self.position.len() - 1] {
             if *i == *self.position.last().unwrap() {
@@ -134,6 +140,7 @@ pub struct Enemy {
 }
 
 impl Enemy {
+    // Create a new enemy
     pub fn new() -> Enemy {
         Enemy {
             position: vec![],
@@ -141,6 +148,7 @@ impl Enemy {
         }
     }
 
+    // Check if moving
     pub fn is_moving(&mut self) -> bool { 
         (self.direction == Some(KeyCode::Up)) || 
         (self.direction == Some(KeyCode::Left)) || 
@@ -148,10 +156,12 @@ impl Enemy {
         (self.direction == Some(KeyCode::Right))
     }
 
+    // Move to default position
     pub fn create_enemy(&mut self) {
         self.position.push(Position(560.0, 90.0));
     }
 
+    // Draw enemy
     pub fn draw_enemy(&mut self, frame: &mut Frame) {
         let mut mesh = Mesh::new();
         let mut index = 0;
@@ -173,6 +183,7 @@ impl Enemy {
         mesh.draw(&mut frame.as_target());
     }
     
+    // Moving
     pub fn move_right(&mut self, width: f32) {
         let head = self.position.last().unwrap().clone();
         if head.0 != width {
